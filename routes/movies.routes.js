@@ -74,6 +74,7 @@ router.get('/movies/:id/edit', (req, res)=>{
             console.log('movies cast', movie.cast);
             Celebrity.find()
                 .then(celebrities=> {
+                    const { cast } = movie;
                     res.render('movies/edit-movie.hbs', {movie, celebrities});
                 })
                 .catch(err=>{

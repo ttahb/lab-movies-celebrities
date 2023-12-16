@@ -1,6 +1,6 @@
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
-
+const hbs = require('hbs');
 // ℹ️ Responsible for the messages you see in the terminal as requests are coming in
 // https://www.npmjs.com/package/morgan
 const logger = require("morgan");
@@ -30,6 +30,15 @@ module.exports = (app) => {
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars
+  // hbs.registerHelper('contains_helper', function (aString) { return aString.toUpperCase(); });
+
+  hbs.registerHelper('contains_helper', function (id, arr) {
+    
+    console.log('id', id); 
+    console.log('array', arr); 
+    return arr.includes(id); }
+  );
+
   app.set("view engine", "hbs");
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));

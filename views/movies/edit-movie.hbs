@@ -12,7 +12,7 @@
     <label> Cast:
         <select name="cast" multiple>
             {{#each celebrities}}
-            <option value="{{_id}}">{{name}}</option>
+            <option value="{{_id}}" {{#if (contains_helper _id ../movie.cast)}}selected{{/if}}>{{name}}</option>
             {{/each}}
         </select>
     </label>
