@@ -29,16 +29,15 @@ module.exports = (app) => {
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
-  // Sets the view engine to handlebars
-  // hbs.registerHelper('contains_helper', function (aString) { return aString.toUpperCase(); });
-
+  
+  // Registering custom handlebar helpers
   hbs.registerHelper('contains_helper', function (id, arr) {
-    
     console.log('id', id); 
     console.log('array', arr); 
     return arr.includes(id); }
   );
 
+  // Sets the view engine to handlebars
   app.set("view engine", "hbs");
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
